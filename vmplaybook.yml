@@ -1,0 +1,29 @@
+- name: Setup Azure Linux VM
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+
+    - name: Clone repository
+      git:
+        repo: 'https://github.com/singha567/auditlogin.git'
+        dest: /var/www/your-project
+        update: yes
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: start and enable Nginx service
+      systemcd:
+        name: nginx
+        state: started
+        enables: yes
