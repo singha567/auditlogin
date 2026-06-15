@@ -13,5 +13,17 @@ pipeline {
         sh "ls -lrt"
         }
     }
+     stage('Stage Deploy') {
+       steps {
+         echo 'Deploying...'
+         // Add deployment steps here
+         }
+      }
+    }
+    post {
+        always {
+            echo 'Pipeline finished!'
+            // Add post-build actions here
+        }
+    }
   }
-}
